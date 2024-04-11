@@ -1,0 +1,24 @@
+<HTML>
+<head>
+<title>jQuery UI Draggable - Default functionality</title>
+<style>
+#resizable{ width: 150px;
+height: 150px;
+background:blue;
+}
+</style>
+<link rel="stylesheet" href="jquery-ui.css">
+<script src="01.js"></script>
+<script src="jquery-ui-1.13.2/jquery-ui.js"></script>
+<script>
+ $( function() {
+ $( "#resizable" ).resizable();
+ } );
+</script>
+</head>
+<body>
+<div id="resizable">
+<p >Drag me around</p>
+</div>
+</body>
+</html>

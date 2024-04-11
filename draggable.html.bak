@@ -1,0 +1,23 @@
+<HTML>
+<head>
+<title>jQuery UI Draggable - Default functionality</title>
+<style>
+#draggable { width: 150px;
+height: 150px;
+background:blue;
+}
+</style>
+<script src="011.js"></script>
+<script src="jquery-ui-1.13.2/jquery-ui.js"></script>
+<script>
+ $( function() {
+ $( "#draggable" ).draggable();
+ } );
+</script>
+</head>
+<body>
+<div id="draggable">
+<p >Drag me around</p>
+</div>
+</body>
+</html>

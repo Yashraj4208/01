@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="01.js">
+</script>
+<script src="myjq.js">
+</script>
+<script>
+$(document).ready(function(){
+ $("#b1").click(function()
+{
+$("p").makeChange();
+}
+)
+});
+</script>
+</head>
+<body>
+<p>This is my plugin</p>
+<input type="button" id="b1" value="show">
+</body>
+</html>

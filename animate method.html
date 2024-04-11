@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="01.js">
+</script>
+<script>
+$(document).ready(function(){
+ $("#btn1").click(function(){
+ $("#div").animate({height: "300px"});
+ });
+ $("#btn2").click(function(){
+ $("#div").animate({width: "500px"});
+ });
+$("#btn3").click(function(){
+ $("#div").animate({marginLeft: "200px"},2000,"linear");
+ });
+});
+</script>
+</head>
+<body>
+<input type="button" id="btn1" value="height">
+<input type="button" id="btn2" value="width">
+<input type="button" id="btn3" value="left">
+<div id="div" style="background:purple;height:100px;width:100px;margin:6px;">
+</div>
+</body>
+</html>

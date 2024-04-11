@@ -1,0 +1,279 @@
+﻿
+program 1
+junk.sh
+	clear
+	for i in *
+	do
+	if [ -f $i]
+	then s= ls -l $i | cut -d Π -f5
+	if [ $s -eq 0 ]
+	then
+	echo "$i is Junk File"
+	rm-i $i
+	fi
+	fi
+	done
+
+program 2
+arithmatic.sh
+	echo enter 2 no
+	read a b
+	i=1
+	while true;
+	do
+	echo "1. Addition"
+	echo "2. Substraction"
+	echo "3.multiplication"
+	echo "4.division"
+	echo "5.exit"
+	echo enter choice
+	read ch
+	case $ch in
+	1)c=$(expr $a + $b)
+	echo add is $c
+	;;
+	2)c=$(expr $a - $b)
+	echo sub is $c
+	;;
+	3)c=$(expr $a'*' $b)
+	echo mul is $c
+	;;
+	4)c=$(expr $a / $b)
+	echo div is SC
+	;;
+	5)echo "exit"
+	exit 0;
+	esac
+	done 
+
+Program 3
+Pallindrome 
+	echo enter the number
+	read n
+	rev=0
+	temp=$n
+	while ($temp-gt 0]
+	do
+	rem expr $temp% 10
+	rev expr $rev** 10 + $rem
+	temp= expr $temp / 10
+	done
+	if [ $n -eq srev ]
+	then
+	echo number is palindrome
+	else
+	echo number is not palindrom 
+	fi
+
+Program 4
+mcq 
+
+	clear
+	echo Questions:
+	SC=0
+	echo "1: Which is the Capital of India?"
+	echo "Options:  a) Delhi b) Mumbai c) Nagpur d) Dhule"
+	read key
+	if test $key = "a"
+	then
+	echo "Your Answer Is Correct"
+	sc= expr $sc + 10'
+	else
+	echo "Your Answer Is Incorrect"
+	fi
+	echo "2: Which is the largest river in world?"
+	echo "Options: a) Ganga b) Yamuna c) Nile d) Panzra"
+	read key
+	if test $key = "c"
+	then
+	echo "your answer is correct"
+	Sc expr $sc + 10
+	else
+	echo "your answer is incorrect"
+	fi
+
+	echo "3: how many keywords in C language?"
+	echo "Options: a)40 b)32 c)33 d)34"
+	read key
+	if test $key = "b"
+	then
+	echo your answer is correct
+	sc='expr $sc + 10'
+	else
+	echo your answer is incorrect"
+	fi
+	if [ $sc-gt 0 ]
+	then
+	echo "congratulation"
+	echo "your score: $sc"
+	else
+	echo "Sorry"
+	echo "your score: $sc"
+	fi
+
+program 5
+delete
+	echo "dir"
+	echo "date"
+	echo "cls"
+	echo "md"
+	echo "exit"
+	while [1]
+	do
+	echo -e "C:\>"
+	read n
+	case $n in
+	dir) ls ;;
+	date)date;;
+	del) echo -e "\n\n Enter the file name you which want to delete
+	read fn
+	rm -i $fn
+	ls;;
+	cls)clear;;
+	md)echo -e "\n\n give new directory name
+	read d
+	mkdir $d
+	ls;;
+	exit)exit;;
+	*)echo entered wrong command
+	esac
+	done
+
+program 6
+summary 
+	clear
+	echo "files with words <= 100 are" >> sumary
+	echo
+	for i in *
+	do
+	if [ -f $i]
+	then
+	words=’cat $i| wc –w’
+	if [ $words -le 100 ]
+	then
+	echo $i $words >> sumary
+	fi
+	fi
+	done
+	echo
+	echo "files with words > 100 & < 500 are" >> sumary
+	echo
+	for i in *
+	do
+	if [ -f $i]
+	then
+	words=’cat $i | wc –w’ 
+      if ($words -gt 100 -a $words -lt 500 ]
+	then
+	echo
+	fi
+	fi
+       done
+program 7
+gcd
+	echo enter two num
+read n1
+read n2
+while [ $n1 -gt $n2 ]
+do
+if [$n1 -gt $n2 ]
+then
+n1=`expr $n1 - $n2’
+else
+n2=`expr $n2 - $n1’
+fi
+done
+echo gcd of given num is $n2
+
+
+program 8
+matrix
+
+	
+	clear
+       echo "enter the element of matrix"
+       i=0
+       while [ $i -lt 9]
+       do
+       read mtx[i]
+       i='expr $i + 1`
+       done
+       echo "the given matrix is"
+echo ${mtx[0]}""${mtx[1]}""${mtx[2]} 
+echo ${mtx[3]}""${mtx[4]}""${mtx[5]}
+       echo ${mtx[6]}""${mtx[7]}""${mtx[8]}
+       echo ""
+       rowl= expr ${mtx[0]} + ${mtx[1]} + ${mtx[2]}
+       row2=`expr ${mtx[3]} + ${mtx[4]} + ${mtx[5]}
+row3= expr ${mtx[6]} + ${mtx[7]} + ${mtx[8]}
+clm1=`expr ${mtx[0]} + $(mtx[3]} + ${mtx[6]}
+       clm2=`expr ${mtx[1]} + ${mtx[4]} + ${mtx[7]}
+       clm3='expr ${mtx[2]} + ${mtx[5]} + ${mtx[8]}
+       totalrow= ‘expr Srowl + $row2 + $row3’
+       totalclm= ’expr $clml + $clm2 + $clm3 
+       echo "the addition of total row is:"
+       echo $totalrow
+       echo “the addition of total row is:”
+       echo $total clm
+
+
+program 9
+fibonanci series
+	echo "enter the nmu:”
+	read n
+	a=0
+	b=1
+	echo "fibo series:"
+	for((i=0;i<n;i++))
+	do
+	echo "$a"
+	fn=$((a+b))
+	a=$b
+	b=$fn
+	done
+program 10
+sum and average 
+
+	sum=0
+       for i in $*
+       do
+       sum=’expr $sum + $i'
+       done
+       avg=‘expr $sum / $#’
+       echo the total sum is $sum
+       echo the total average is $avg
+
+
+
+program 11
+factorial
+
+	echo "enter the num
+       read n
+       fact=1
+       for((i=2;i<=n;i++))
+       {
+       fact=$((fact*i))
+       }
+       echo $fact
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
