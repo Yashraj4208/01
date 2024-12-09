@@ -1,0 +1,252 @@
+/* Assignment 38 :- Program for Code 2 Lab:DAA */
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<ctype.h>
+class vcode2
+{
+private:
+int i,n,cnt,itop,istack[50],icnt;
+char prefix[50],top,ch[100];
+struct tree
+{
+char data;
+int mr;
+tree *left,*right,*parent;
+};
+public:
+struct tree *ltemp,*rtemp,*temp,*root,*current,*stack[20];
+vcode1()
+{
+top=-1;
+itop=-1;
+cnt=0;
+cnt=1;
+}
+void spush(tree*);
+void spop();
+int ipop();
+void ipush(int);
+char *data(tree*);
+void findmr(tree *);
+void read();
+void cal();
+void print();
+void inorder(tree*);
+void preorder(tree*);
+void code2(tree*,int);
+};
+void vcode2::read()
+{
+cout<<"\nENTER THE PREFIX EXPRESSION :";
+cin>>prefix;
+cout<<"\nENTER THE NUMBER OF REGISTERS :";
+cin>>n;
+}
+void vcode2::spush(tree *ele)
+{
+stack[++top]=ele;
+}
+void vcode2::spop()
+{
+istack[top--];
+}
+void vcode2::ipush(int c)
+{
+istack[++top]=c;
+}
+int vcode2::ipop()
+{
+return(istack[itop--]);
+}
+void vcode2::cal()
+{
+root=NULL;
+for(i=0;prefix[i]!='\0';i++)
+{
+if(root==NULL)
+{
+root=new tree;
+root->data=prefix[i];
+root->left=root->right=NULL;
+spush(root);
+if(isalpha(prefix[i+1]) && isalpha(prefix[i+2]))
+{
+ltemp=new tree;
+ltemp->data=prefix[i+1];
+ltemp->left=ltemp->right=NULL;
+rtemp=new tree;
+rtemp->data=prefix[i+2];
+rtemp->left=rtemp->right=NULL;
+root->left=ltemp;
+root->right=rtemp;
+spop();
+i++;i++;
+}
+}
+else
+if(!(isalpha(prefix[i])))
+{
+temp= new tree;
+temp->data=prefix[i];
+temp->left=temp->right=NULL;
+current=stack[top];
+if(current->left!=NULL)
+{
+current->right=temp;
+spop();
+}
+else
+current->left=temp;
+spush(temp);
+if(isalpha(prefix[i+1]) && isalpha(prefix[i+2]))
+{
+ltemp=new tree;
+ltemp
+->data=prefix[i+1];
+ltemp
+->left=ltemp
+->right=NULL;
+rtemp=new tree;
+rtemp
+->data=prefix[i+2];
+rtemp
+->left=rtemp
+->right=NULL;
+current=stack[top];
+current
+->left=ltemp;
+current
+->right=rtemp
+;
+spop();
+i++;i++; }}
+else
+if(isalpha(prefix[i])) {
+temp= new tree;
+temp
+->data=prefix[i]; 
+temp
+->left=temp
+->right=NULL;
+current=stack[top];
+if(current
+->left!=NULL)
+{
+current
+->right=temp;
+spop(); }
+else
+current
+->left=temp;
+}}}
+void vcode2::preorder(tree *r) {
+if(r!=NULL) {r->left->parent=r;
+preorder(r
+->left);
+findmr(r);
+cout<<" "<<r
+->data;
+r
+->right
+->parent=r;
+preorder(r
+->right);
+findmr(r); }}
+void vcode2::inorder(tree *r) {
+if(r!=NULL) {
+inorder(r
+->left);
+cout<<" "<<r
+->mr;
+inorder(r
+->right);
+}
+}
+void vcode2::findmr(tree *p)
+{
+int l1,l2;
+if(p->left==NULL && p->right==NULL && p->parent->right==p)
+p->mr=0;
+else
+if(p->left==NULL && p->right==NULL && p->parent->left==p)
+p->mr=1;
+else
+if((l1=p->left->mr)!=(l2=p->right->mr))
+p->mr=((l1>l2)?l1:l2);
+else
+if((l1=p->left->mr)==(l2=p->right->mr))
+p->mr=l1+1;
+}
+void vcode2::print()
+{
+root->parent->data='=';
+cout<<"INFIX :";
+preorder(root);
+cout<<endl;
+cout<<"MR VALUES :";
+inorder(root);
+cout<<endl<<endl;
+code2(root,1);
+}
+void vcode2::code2(tree *t,int icnt)
+{
+tree *lc,*rc;
+if((t->left==NULL) && (t->right==NULL)&& t->parent->left==t)
+{
+cout<<"LOAD "<<t->data<<" R "<<icnt<<endl;
+return;
+}
+lc=t->left;
+rc=t->right;
+if(rc->mr==0)
+{
+code2(lc,icnt);
+cout<<data(t)<<" R "<<icnt<<","<<rc->data<<",R"<<icnt<<endl;
+}
+else
+if(lc->mr >=n && rc->mr >=n)
+{
+code2(rc,icnt);
+ipush(++cnt);
+cout<<"STORE R"<<icnt<<",T"<<cnt<<endl;
+code2(lc,icnt);
+cout<<data(t)<<" R"<<icnt<<",T"<<cnt<<" ,R"<<icnt<<endl;
+cnt=ipop();
+}
+else
+if(lc->mr< rc->mr)
+{
+code2(rc,icnt);
+code2(lc,icnt+1);
+cout<<data(t)<<" R"<<icnt+1<<" ,R"<<icnt<<" ,R"<<icnt<<endl;
+}
+else
+//if(lc->mr >=rc->mr &&rc->mr <n)
+{
+code2(lc,icnt);
+code2(rc,icnt+1);
+cout<<data(t)<<" R"<<icnt<<" ,R"<<icnt+1<<" ,R"<<icnt<<endl;
+}
+}
+char* vcode2::data(tree *t1)
+{
+switch(t1->data)
+{
+case '+': return ("ADD");
+case '-': return ("SUB");
+case '*': return ("MPY");
+case '/': return ("DIV");
+}
+return 0;
+}
+main()
+{
+vcode2 c;
+clrscr();
+c.read();
+c.cal();
+c.print();
+getch();
+return 0;
+}
